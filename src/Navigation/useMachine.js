@@ -9,8 +9,10 @@ import { interpret } from "robot3";
 export function useMachine(machine) {
     const {current: service} = useRef(interpret(machine, () => {
         setState(service.machine.current)
+        setContext(service.context)
     }))
     const [state, setState] = useState(service.machine.current)
+    const [context, setContext] = useState(service.context)
     
     const send = useCallback(
         /**
@@ -34,5 +36,5 @@ export function useMachine(machine) {
         [service.machine.state.value.transitions]
     )
 
-    return [state, send, can]
+    return [state, context, send, can]
 }

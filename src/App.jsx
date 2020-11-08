@@ -4,12 +4,13 @@ import { useMachine } from './Navigation/useMachine'
 import machine from './Navigation/machine'
 
 export default function App() {
-  const [state, send, can] = useMachine(machine)
+  const [state, context, send, can] = useMachine(machine)
 
   return <Box p={2}>
     <h1>Fencer Game</h1>
     {state === 'loginForm' && <p>Login form</p>}
     {state === 'registerForm' && <p>Register form</p>}
+
     {can('login') && <Button
       variant="contained"
       color="primary"
@@ -17,12 +18,29 @@ export default function App() {
     >
       Login
     </Button>}
+
     {can('register') && <Button
       variant="contained"
       color="primary"
       onClick={() => send('register')}
     >
       Register
+    </Button>}
+
+    {can('addToken') && <Button
+      variant="contained"
+      color="primary"
+      onClick={() => send('addToken', {value: 'blabla'})}
+    >
+      Add Token
+    </Button>}
+
+    {can('loggedIn') && <Button
+      variant="contained"
+      color="primary"
+      onClick={() => send('loggedIn')}
+    >
+      Login !
     </Button>}
 
     {can('home') && <Button
@@ -32,6 +50,9 @@ export default function App() {
     >
       Home
     </Button>}
-    {state}
+    <Box mt={2}>
+      State : {state}<br/>
+      Context : {JSON.stringify(context)}
+    </Box>
   </Box>
 }
