@@ -1,4 +1,4 @@
-import {createMachine, interpret, reduce, state, transition} from 'robot3'
+import {createMachine, guard, interpret, reduce, state, transition} from 'robot3'
 
 const machine = createMachine(
   'loggedOut',
@@ -8,17 +8,18 @@ const machine = createMachine(
       transition('login', 'loginForm')
     ),
     loggedIn: state(
-      transition('addToken', 'loggedIn', reduce((ctx, ev) => ({...ctx, token: ev.value}))),
       transition('logout', 'loggedOut'),
       transition('findGame', 'findGame')
     ),
     registerForm: state(
       transition('logout', 'loggedOut'),
-      transition('loggedIn', 'loggedIn')
+      transition('loggedIn', 'loggedIn', guard(ctx => ctx.token && ctx.token !== null)),
+      transition('addToken', 'registerForm', reduce((ctx, ev) => ({...ctx, token: ev.value})))
     ),
     loginForm: state(
       transition('logout', 'loggedOut'),
-      transition('loggedIn', 'loggedIn')
+      transition('loggedIn', 'loggedIn', guard(ctx => ctx.token && ctx.token !== null)),
+      transition('addToken', 'loginForm', reduce((ctx, ev) => ({...ctx, token: ev.value})))
     ),
     findGame: state(
       transition('loggedIn', 'loggedIn'),
@@ -40,7 +41,7 @@ const service = interpret(machine, () => {
 console.log(service.machine.current)
 service.send('login')
 console.log(service.machine.current)
-service.send('loggedIn')
-console.log(service.machine.current)
 service.send({type: 'addToken', value: 'blablabla'})
+console.log(service.machine.current)
+service.send('loggedIn')
 console.log(service.machine.current)
