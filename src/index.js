@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {createMachine, interpret, state, transition} from 'robot3'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const machine = createMachine({
+  home: state(transition('register', 'register')),
+  register: state(),
+  login: state(),
+  findGame: state(),
+  game: state()
+})
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const service = interpret(machine, () => {
+
+})
+console.log(service.machine.current)
+service.send('register')
+console.log(service.machine.current)
