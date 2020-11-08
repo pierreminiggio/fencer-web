@@ -13,12 +13,12 @@ const machine = createMachine(
     ),
     registerForm: state(
       transition('logout', 'loggedOut'),
-      transition('loggedIn', 'loggedIn', guard(ctx => ctx.token && ctx.token !== null)),
+      transition('loggedIn', 'loggedIn', guard(ctx => ctx.token !== null)),
       transition('addToken', 'registerForm', reduce((ctx, ev) => ({...ctx, token: ev.value})))
     ),
     loginForm: state(
       transition('logout', 'loggedOut'),
-      transition('loggedIn', 'loggedIn', guard(ctx => ctx.token && ctx.token !== null)),
+      transition('loggedIn', 'loggedIn', guard(ctx => ctx.token !== null)),
       transition('addToken', 'loginForm', reduce((ctx, ev) => ({...ctx, token: ev.value})))
     ),
     findGame: state(
