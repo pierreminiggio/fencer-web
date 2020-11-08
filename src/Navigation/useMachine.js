@@ -31,9 +31,24 @@ export function useMachine(machine) {
          * @returns {boolean}
          */
         (transitionName) => {
-            return service.machine.state.value.transitions.has(transitionName)
+            const transitions = service.machine.state.value.transitions
+
+            if (! transitions.has(transitionName)) {
+                return false
+            }
+
+            const transitionsToCheck = transitions.get(transitionName)
+
+            for (const transition of transitionsToCheck) {
+                if ((transition.guards && transition.guards(service.context)) || ! transition.guards) {
+                    return true
+                }
+            }
+
+            return false
+
         },
-        [service.machine.state.value.transitions]
+        [service.context, service.machine.state.value.transitions]
     )
 
     return [state, context, send, can]
