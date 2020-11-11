@@ -3,6 +3,9 @@ import { Box, Button } from '@material-ui/core'
 import machine from './Navigation/machine'
 import { useMachine } from './Struct/StateMachine/useMachine'
 
+/**
+ * @returns {JSX.Element}
+ */
 export default function App() {
   const {state, context, can, send} = useMachine(machine)
 
