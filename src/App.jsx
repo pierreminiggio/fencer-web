@@ -4,7 +4,7 @@ import machine from './Navigation/machine'
 import { useMachine } from './Struct/StateMachine/useMachine'
 
 export default function App() {
-  const [state, context, send, can] = useMachine(machine)
+  const {state, context, can, send} = useMachine(machine)
 
   return <Box p={2}>
     <h1>Fencer Game</h1>

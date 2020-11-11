@@ -1,11 +1,12 @@
 import { useCallback, useRef, useState } from "react";
 import { interpret } from "robot3";
 import canTransit from "./canTransit";
+import StateMachine from "./StateMachine";
 
 /**
  * @param {import("robot3").Machine} machine 
  * 
- * // TODO type return
+ * @returns {StateMachine}
  */
 export function useMachine(machine) {
     const {current: service} = useRef(interpret(machine, () => {
@@ -15,16 +16,6 @@ export function useMachine(machine) {
     const [state, setState] = useState(service.machine.current)
     const [context, setContext] = useState(service.context)
     
-    const send = useCallback(
-        /**
-         * @param {string} type 
-         * @param {Object} params 
-         */
-        function(type, params = {}) {
-            service.send({type: type, ...params})
-        }, [service]
-    )
-
     const can = useCallback(
         /**
          * @param {string} transitionName
@@ -37,5 +28,15 @@ export function useMachine(machine) {
         [service.context, service.machine.state.value.transitions]
     )
 
-    return [state, context, send, can]
+    const send = useCallback(
+        /**
+         * @param {string} type 
+         * @param {Object} params 
+         */
+        function(type, params = {}) {
+            service.send({type: type, ...params})
+        }, [service]
+    )
+
+    return new StateMachine(state, context, can, send)
 }
