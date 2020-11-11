@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { interpret } from "robot3";
-import canTransit from "../Struct/StateMachine/canTransit";
+import canTransit from "./canTransit";
 
 /**
  * @param {import("robot3").Machine} machine 

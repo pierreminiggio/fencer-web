@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Button } from '@material-ui/core'
-import { useMachine } from './Navigation/useMachine'
+import { useMachine } from './Struct/StateMachine/useMachine'
 import machine from './Navigation/machine'
 
 export default function App() {
