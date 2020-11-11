@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { interpret } from "robot3";
+import canTransit from "../Struct/StateMachine/canTransit";
 
 /**
  * @param {import("robot3").Machine} machine 
@@ -31,22 +32,7 @@ export function useMachine(machine) {
          * @returns {boolean}
          */
         (transitionName) => {
-            const transitions = service.machine.state.value.transitions
-
-            if (! transitions.has(transitionName)) {
-                return false
-            }
-
-            const transitionsToCheck = transitions.get(transitionName)
-
-            for (const transition of transitionsToCheck) {
-                if ((transition.guards && transition.guards(service.context)) || ! transition.guards) {
-                    return true
-                }
-            }
-
-            return false
-
+            return canTransit(transitionName, service.machine.state.value.transitions, service.context)
         },
         [service.context, service.machine.state.value.transitions]
     )
