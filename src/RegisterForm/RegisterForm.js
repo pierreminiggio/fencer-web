@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { Button, Box } from '@material-ui/core'
 
 export default class RegisterForm extends React.Component {
 
@@ -14,6 +14,27 @@ export default class RegisterForm extends React.Component {
 
         return (<>
             <p>register form</p>
+            <Box>
+                <div>
+                    <label htmlFor="login">Login :</label>
+                    <input type="email" placeholder="Login" id="login"/>
+                </div>
+                <div>
+                    <label htmlFor="password">Password :</label>
+                    <input type="password" placeholder="Password" id="password"/>
+                </div>
+                <div>
+                    <label htmlFor="confirm">Confirm Password :</label>
+                    <input type="password" placeholder="Confirm Password" id="confirm"/>
+                </div>
+                {true && <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {}}
+                >
+                    Register
+                </Button>}
+            </Box>
             {can('addToken') && <Button
                 variant="contained"
                 color="primary"
