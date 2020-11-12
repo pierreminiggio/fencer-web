@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Button } from '@material-ui/core'
 import machine from './Navigation/machine'
 import { useMachine } from './Struct/StateMachine/useMachine'
+import LoginForm from './LoginForm/LoginForm'
 
 /**
  * @returns {JSX.Element}
@@ -11,7 +12,7 @@ export default function App() {
 
   return <Box p={2}>
     <h1>Fencer Game</h1>
-    {state === 'loginForm' && <p>Login form</p>}
+    {state === 'loginForm' && <LoginForm/>}
     {state === 'registerForm' && <p>Register form</p>}
 
     {can('login') && <Button
