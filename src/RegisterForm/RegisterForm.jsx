@@ -16,10 +16,8 @@ export default function RegisterForm(props) {
 
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
-    console.log(state)
 
     return (<>
-        {JSON.stringify(context)}
         <Box>
             <div>
                 <label htmlFor="login">Login :</label>
@@ -72,5 +70,10 @@ export default function RegisterForm(props) {
         >
         Home
         </Button>}
+
+        <Box mt={2}>
+            State : {state}<br/>
+            Context : {JSON.stringify(context)}
+        </Box>
     </>)
 }

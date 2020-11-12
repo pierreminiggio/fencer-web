@@ -9,9 +9,10 @@ export default createMachine(
     {
       form: state(
         transition('input', 'form', reduce((ctx, ev) => {
-            ctx[ev.field] = ev.value
+            const newCtx = {...ctx}
+            newCtx[ev.field] = ev.value
 
-            return ctx
+            return newCtx
         })),
         transition(
             'submit',
