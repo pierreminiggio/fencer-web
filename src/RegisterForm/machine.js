@@ -34,5 +34,5 @@ export default createMachine(
       success: state(),
       error: state()
     },
-    () => ({login: null, paswword: null, confirm: null, token: null})
+    () => ({login: null, password: null, confirm: null, token: null})
 )
