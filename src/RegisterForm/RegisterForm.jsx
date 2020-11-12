@@ -19,11 +19,19 @@ export default function RegisterForm(props) {
     console.log(state)
 
     return (<>
-        <p>register form</p>
+        {JSON.stringify(context)}
         <Box>
             <div>
                 <label htmlFor="login">Login :</label>
-                <input type="email" placeholder="Login" id="login"/>
+                <input
+                    type="email"
+                    placeholder="Login"
+                    id="login"
+                    onChange={(e) => send('input', {
+                        field: 'login',
+                        value: e.target.value
+                    })}
+                />
             </div>
             <div>
                 <label htmlFor="password">Password :</label>
@@ -36,7 +44,7 @@ export default function RegisterForm(props) {
             {true && <Button
                 variant="contained"
                 color="primary"
-                onClick={() => {}}
+                onClick={() => send('submit')}
             >
                 Register
             </Button>}

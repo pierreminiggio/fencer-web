@@ -8,14 +8,22 @@ export default createMachine(
     'form',
     {
       form: state(
-        transition('submit', 'loading')
+        transition('input', 'form', reduce((ctx, ev) => {
+            ctx[ev.field] = ev.value
+
+            return ctx
+        })),
+        transition(
+            'submit',
+            'loading'
+        )
       ),
       loading: invoke(
         () => wait(2000),
         transition(
             'done',
             'success',
-            reduce((ctx, ev) => ({...ctx, login: ev.data.login, password: ev.data.password, token: ev.data.token}))
+            reduce((ctx, ev) => ({...ctx, token: ev.data.token}))
         ),
         transition(
             'error',
