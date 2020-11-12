@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
 
-export default class LoginForm extends React.Component {
+export default class RegisterForm extends React.Component {
 
     /**
      * @returns {JSX.Element}
@@ -13,7 +13,7 @@ export default class LoginForm extends React.Component {
         const send = navigationMachine.send
 
         return (<>
-            <p>login form</p>
+            <p>register form</p>
             {can('addToken') && <Button
                 variant="contained"
                 color="primary"

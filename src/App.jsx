@@ -3,6 +3,7 @@ import { Box, Button } from '@material-ui/core'
 import machine from './Navigation/machine'
 import { useMachine } from './Struct/StateMachine/useMachine'
 import LoginForm from './LoginForm/LoginForm'
+import RegisterForm from './RegisterForm/RegisterForm'
 
 /**
  * @returns {JSX.Element}
@@ -14,7 +15,7 @@ export default function App() {
   return <Box p={2}>
     <h1>Fencer Game</h1>
     {state === 'loginForm' && <LoginForm navigationMachine={navigationMachine} />}
-    {state === 'registerForm' && <p>Register form</p>}
+    {state === 'registerForm' && <RegisterForm navigationMachine={navigationMachine} />}
 
     {can('login') && <Button
       variant="contained"
@@ -31,7 +32,7 @@ export default function App() {
     >
       Register
     </Button>}
-    
+
     <Box mt={2}>
       State : {state}<br/>
       Context : {JSON.stringify(context)}
