@@ -25,7 +25,7 @@ export default function RegisterForm(props) {
                     type="email"
                     placeholder="Login"
                     id="login"
-                    onChange={(e) => send('input', {
+                    onChange={(e) => can('input') && send('input', {
                         field: 'login',
                         value: e.target.value
                     })}
