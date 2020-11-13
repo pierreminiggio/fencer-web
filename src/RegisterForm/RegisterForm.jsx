@@ -25,6 +25,7 @@ export default function RegisterForm(props) {
                     type="email"
                     placeholder="Login"
                     id="login"
+                    disabled={! can('input')}
                     onChange={(e) => can('input') && send('input', {
                         field: 'login',
                         value: e.target.value
@@ -33,11 +34,29 @@ export default function RegisterForm(props) {
             </div>
             <div>
                 <label htmlFor="password">Password :</label>
-                <input type="password" placeholder="Password" id="password"/>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                    disabled={! can('input')}
+                    onChange={(e) => can('input') && send('input', {
+                        field: 'password',
+                        value: e.target.value
+                    })}
+                />
             </div>
             <div>
                 <label htmlFor="confirm">Confirm Password :</label>
-                <input type="password" placeholder="Confirm Password" id="confirm"/>
+                <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    id="confirm"
+                    disabled={! can('input')}
+                    onChange={(e) => can('input') && send('input', {
+                        field: 'confirm',
+                        value: e.target.value
+                    })}
+                />
             </div>
             {true && <Button
                 variant="contained"
