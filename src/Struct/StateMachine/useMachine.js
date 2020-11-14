@@ -1,7 +1,7 @@
-import { useCallback, useRef, useState } from "react";
-import { interpret } from "robot3";
-import canTransit from "./canTransit";
-import StateMachine from "./StateMachine";
+import { useCallback, useRef, useState } from 'react'
+import { interpret } from 'robot3'
+import canTransit from './canTransit'
+import StateMachine from './StateMachine'
 
 /**
  * @param {import("robot3").Machine} machine 
