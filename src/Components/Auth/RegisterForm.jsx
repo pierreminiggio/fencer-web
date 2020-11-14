@@ -40,6 +40,8 @@ export default function RegisterForm(props) {
         formStyle.paddingTop = '48px'
     }
 
+    const loading = state === 'loading'
+
     return (
         <>
             <form autoComplete="on" style={formStyle}>
@@ -75,6 +77,7 @@ export default function RegisterForm(props) {
                 onClick={() => send('submit')}
                 disabled={! can('submit')}
                 text='Register'
+                loading={loading}
                 tooltip={tooltip}
             />
             

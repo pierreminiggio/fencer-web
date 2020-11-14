@@ -1,4 +1,4 @@
-import { Button, Tooltip } from '@material-ui/core'
+import { Button, CircularProgress, Tooltip } from '@material-ui/core'
 import DisabledButtonForTooltip from './DisabledButtonForTooltip'
 
 /**
@@ -19,11 +19,13 @@ export default function TooltipedButton(props) {
     const childProps = {...props}
     const text = childProps.text
     delete childProps.text
+    const loading = childProps.loading
+    delete childProps.loading
 
     const isTooltip = childProps.tooltip !== undefined
     if (! isTooltip) {
 
-        return <Button {...childProps}>{text}</Button>
+        return <Button {...childProps}>{loading ? <CircularProgress size={14} /> : ''}{text}</Button>
     }
 
     const tooltip = childProps.tooltip
@@ -31,8 +33,17 @@ export default function TooltipedButton(props) {
 
     if (props.disabled !== undefined) {
 
-        return <Tooltip title={tooltip}><DisabledButtonForTooltip {...childProps} text={text} tooltip={tooltip}/></Tooltip>
+        return <Tooltip title={tooltip}>
+            <DisabledButtonForTooltip
+                {...childProps}
+                text={text}
+                tooltip={tooltip}
+                loading={loading}
+            />
+        </Tooltip>
     } 
 
-    return <Tooltip title={tooltip}><Button {...childProps}>{text}</Button></Tooltip>
+    return <Tooltip title={tooltip}>
+        <Button {...childProps}>{loading ? <CircularProgress size={14} /> : ''}{text}</Button>
+    </Tooltip>
 }
