@@ -3,9 +3,16 @@ import FormEmailField from '../Helpers/Form/Input/FormEmailField'
 import FormPasswordField from '../Helpers/Form/Input/FormPasswordField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
 import machine from '../../Domain/Auth/register'
+import StateMachine from '../../Struct/StateMachine/StateMachine'
 
 /**
- * @param {Object} props
+ * @typedef {Object} RegisterFormProps
+ * 
+ * @property {StateMachine} navigationMachine
+ */
+
+/**
+ * @param {RegisterFormProps} props
  * 
  * @returns {JSX.Element}
  */
