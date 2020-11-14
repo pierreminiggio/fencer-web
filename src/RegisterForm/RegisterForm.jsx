@@ -46,7 +46,7 @@ export default function RegisterForm(props) {
                     />
                 </Box>
             </form>
-            {true && <Button
+            {can('submit') && <Button
                 variant="contained"
                 color="primary"
                 onClick={() => send('submit')}
