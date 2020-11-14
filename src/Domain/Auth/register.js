@@ -10,7 +10,7 @@ export default createMachine(
         form: state(
             transition('input', 'form', reduce((ctx, ev) => {
                 const newCtx = {...ctx}
-                newCtx[ev.field] = ev.value
+                newCtx[ev.field] = ev.value !== '' ? ev.value : null
 
                 return newCtx
             })),
@@ -19,11 +19,8 @@ export default createMachine(
                 'loading',
                 guard(ctx =>
                     ctx.login !== null &&
-                    ctx.login !== '' &&
                     ctx.password !== null &&
-                    ctx.password !== '' &&
-                    ctx.confirm !== null &&
-                    ctx.confirm !== ''
+                    ctx.confirm !== null
                 )
             )
         ),
