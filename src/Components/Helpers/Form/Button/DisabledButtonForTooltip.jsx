@@ -15,11 +15,11 @@ const DisableableButton = withStyles({
   })(Button);
 
 /**
- * @param {DisabledButtonProps} props
+ * @param {Object} props
  * 
  * @returns {JSX.Element}
  */
-const DisabledButton = React.forwardRef((props, ref) => {
+const DisabledButtonForTooltip = React.forwardRef((props, ref) => {
     const childProps = {...props}
     const text = childProps.text
     delete childProps.text
@@ -27,4 +27,4 @@ const DisabledButton = React.forwardRef((props, ref) => {
     return <div style={divStyle} ref={ref}><DisableableButton {...childProps} disabled>{text}</DisableableButton></div>
 })
 
-export default DisabledButton
+export default DisabledButtonForTooltip

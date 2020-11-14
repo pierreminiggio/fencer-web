@@ -4,7 +4,7 @@ import FormPasswordField from '../Helpers/Form/Input/FormPasswordField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
 import machine from '../../Domain/Auth/register'
 import StateMachine from '../../Struct/StateMachine/StateMachine'
-import DisabledButton from '../Helpers/Form/Button/DisabledButton'
+import DisabledButtonForTooltip from '../Helpers/Form/Button/DisabledButtonForTooltip'
 
 /**
  * @typedef {Object} RegisterFormProps
@@ -63,7 +63,7 @@ export default function RegisterForm(props) {
                         Register
                     </Button>
                     : <Tooltip title="Veuillez remplir le formulaire">
-                        <DisabledButton text='Register'/>
+                        <DisabledButtonForTooltip text='Register'/>
                     </Tooltip>
             }
             
