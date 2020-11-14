@@ -1,4 +1,4 @@
-import { Button, Box } from '@material-ui/core'
+import { Button, Box, Tooltip } from '@material-ui/core'
 import FormEmailField from '../Form/FormEmailField'
 import FormPasswordField from '../Form/FormPasswordField'
 import { useMachine } from '../Struct/StateMachine/useMachine'
@@ -17,10 +17,10 @@ export default function RegisterForm(props) {
 
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
-    
+
     return (
         <>
-            <form noValidate autoComplete="on">
+            <form autoComplete="on">
                 <Box display="flex" flexDirection="column">
                     <FormEmailField
                         field='login'
@@ -45,14 +45,20 @@ export default function RegisterForm(props) {
                     />
                 </Box>
             </form>
-            <Button
-                variant="contained"
-                color="primary"
-                disabled={! can('submit')}
-                onClick={() => send('submit')}
-            >
-                Register
-            </Button>
+            {
+                can('submit')
+                    ? <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => send('submit')}
+                    >
+                        Register
+                    </Button>
+                    : <Tooltip title="Veuillez remplir le formulaire">
+                        <div>Register</div>
+                    </Tooltip>
+            }
+            
             {navigationCan('addToken') && <Button
                 variant="contained"
                 color="primary"
