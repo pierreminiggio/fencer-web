@@ -18,19 +18,12 @@ import { TextField } from "@material-ui/core"
  */
 export default function FormInputField(props) {
 
-    const type = props.type
-    const field = props.field
-    const label = props.label
-    const can = props.can
-    const send = props.send
-    const transition = props.transition
-
     return <TextField
-        label={label}
-        type={type}
-        disabled={! can(transition)}
-        onChange={(e) => can(transition) && send(transition, {
-            field: field,
+        label={props.label}
+        type={props.type}
+        disabled={! props.can(props.transition)}
+        onChange={(e) => props.can(props.transition) && props.send(props.transition, {
+            field: props.field,
             value: e.target.value
         })}
     />
