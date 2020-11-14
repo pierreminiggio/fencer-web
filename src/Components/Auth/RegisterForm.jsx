@@ -6,6 +6,7 @@ import { useMachine } from '../../Struct/StateMachine/useMachine'
 import machine from '../../Domain/Auth/register'
 import StateMachine from '../../Struct/StateMachine/StateMachine'
 import TooltipedButton from '../Helpers/Form/Button/TooltipedButton'
+import AlertData from '../../Struct/MaterialUI/AlertData'
 
 /**
  * @typedef {Object} RegisterFormProps
@@ -32,10 +33,7 @@ export default function RegisterForm(props) {
     let alert = undefined
     const formStyle = {}
     if (can('submit') && context.password !== context.confirm) {
-        alert = {
-            severity: 'warning',
-            message: 'The 2 passwords don\'t match !'
-        }
+        alert = new AlertData('warning', 'The 2 passwords don\'t match !')
     }
 
     if (! alert) {
