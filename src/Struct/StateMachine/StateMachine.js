@@ -6,10 +6,25 @@ export default class StateMachine {
     /** @type {Object} */
     context
 
-    /** @type {Function} */
+    /**
+     * @callback CanFunction
+     * 
+     * @param {string} transitionName
+     * 
+     * @returns {boolean}
+     */
+
+    /** @type {CanFunction} */
     can
 
-    /** @type {Function} */
+    /**
+     * @callback SendFunction
+     * 
+     * @param {string} type 
+     * @param {Object} params 
+     */
+
+    /** @type {SendFunction} */
     send
 
     /**
