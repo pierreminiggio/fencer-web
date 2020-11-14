@@ -52,13 +52,6 @@ export default function RegisterForm(props) {
 
     return (
         <>
-            {navigationCan('home') && <Button
-                variant="outlined"
-                onClick={() => navigationSend('home')}
-                >
-                Home
-            </Button>}
-
             <form autoComplete="on" style={formStyle}>
                 {alert ? <Alert severity={alert.severity}>{alert.message}</Alert> : ''}
                 <Box display="flex" flexDirection="column">
