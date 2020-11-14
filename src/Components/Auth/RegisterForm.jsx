@@ -34,7 +34,9 @@ export default function RegisterForm(props) {
     const formStyle = {}
     if (can('submit') && context.password !== context.confirm) {
         alert = new AlertData('warning', 'The 2 passwords don\'t match !')
-    } else if (state === 'success') {
+    }
+    
+    if (state === 'success') {
         alert = new AlertData('success', 'Successfully Registered !')
         setTimeout(() => {
             navigationCan('addToken') && navigationSend('addToken', {value: context.token})
