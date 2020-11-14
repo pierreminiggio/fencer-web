@@ -28,12 +28,18 @@ export default function RegisterForm(props) {
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
 
-    let tooltip = ! can('submit') ? 'Please fill the form' : undefined
+    const tooltip = ! can('submit') && state === 'edit' ? 'Please fill the form' : undefined
 
     let alert = undefined
     const formStyle = {}
     if (can('submit') && context.password !== context.confirm) {
         alert = new AlertData('warning', 'The 2 passwords don\'t match !')
+    } else if (state === 'success') {
+        alert = new AlertData('success', 'Successfully Registered !')
+        setTimeout(() => {
+            navigationCan('addToken') && navigationSend('addToken', {value: context.token})
+            navigationCan('loggedIn') && navigationSend('loggedIn')
+        }, 2000)
     }
 
     if (! alert) {

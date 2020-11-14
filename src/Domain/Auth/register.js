@@ -29,7 +29,7 @@ export default createMachine(
             transition(
                 'done',
                 'success',
-                reduce((ctx, ev) => ({...ctx, token: ev.data.token}))
+                reduce((ctx, ev) => ({...ctx, token: 'test'}))
             ),
             transition(
                 'error',
