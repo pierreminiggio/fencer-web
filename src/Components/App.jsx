@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Button } from '@material-ui/core'
-import machine from './Navigation/machine'
-import { useMachine } from './Struct/StateMachine/useMachine'
-import LoginForm from './LoginForm/LoginForm'
-import RegisterForm from './RegisterForm/RegisterForm'
+import machine from '../Navigation/machine'
+import { useMachine } from '../Struct/StateMachine/useMachine'
+import LoginForm from './Auth/LoginForm'
+import RegisterForm from './Auth/RegisterForm'
 
 /**
  * @returns {JSX.Element}
