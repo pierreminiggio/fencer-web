@@ -9,33 +9,33 @@ import RegisterForm from './Auth/RegisterForm'
  * @returns {JSX.Element}
  */
 export default function App() {
-  const navigationMachine = useMachine(machine)
-  const {state, context, can, send} = navigationMachine
+    const navigationMachine = useMachine(machine)
+    const {state, context, can, send} = navigationMachine
 
-  return <Box p={2}>
-    <h1>Fencer Game</h1>
-    {state === 'loginForm' && <LoginForm navigationMachine={navigationMachine} />}
-    {state === 'registerForm' && <RegisterForm navigationMachine={navigationMachine} />}
+    return <Box p={2}>
+        <h1>Fencer Game</h1>
+        {state === 'loginForm' && <LoginForm navigationMachine={navigationMachine} />}
+        {state === 'registerForm' && <RegisterForm navigationMachine={navigationMachine} />}
 
-    {can('login') && <Button
-      variant="contained"
-      color="primary"
-      onClick={() => send('login')}
-    >
-      Login
-    </Button>}
+        {can('login') && <Button
+            variant="contained"
+            color="primary"
+            onClick={() => send('login')}
+        >
+           Login
+        </Button>}
 
-    {can('register') && <Button
-      variant="contained"
-      color="primary"
-      onClick={() => send('register')}
-    >
-      Register
-    </Button>}
+        {can('register') && <Button
+            variant="contained"
+            color="primary"
+            onClick={() => send('register')}
+        >
+            Register
+        </Button>}
 
-    <Box mt={2}>
-      State : {state}<br/>
-      Context : {JSON.stringify(context)}
+        <Box mt={2}>
+            State : {state}<br/>
+            Context : {JSON.stringify(context)}
+        </Box>
     </Box>
-  </Box>
 }
