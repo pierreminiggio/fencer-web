@@ -1,5 +1,5 @@
 import { Button, Box, TextField } from '@material-ui/core'
-import FormTextField from '../Form/FormTextField'
+import FormInputField from '../Form/FormInputField'
 import { useMachine } from '../Struct/StateMachine/useMachine'
 import machine from './machine'
 
@@ -22,7 +22,7 @@ export default function RegisterForm(props) {
         <>
             <form noValidate autoComplete="on">
                 <Box display="flex" flexDirection="column">
-                    <FormTextField
+                    <FormInputField
                         type={'email'}
                         field={'login'}
                         label={'Login'}

@@ -1,7 +1,7 @@
 import { TextField } from "@material-ui/core"
 
 /**
- * @typedef {Object} RegisterFormProps
+ * @typedef {Object} FormInputFieldProps
  * 
  * @property {string} type
  * @property {string} field
@@ -12,11 +12,11 @@ import { TextField } from "@material-ui/core"
  */
 
 /**
- * @param {RegisterFormProps} props
+ * @param {FormInputFieldProps} props
  * 
  * @returns {JSX.Element}
  */
-export default function FormTextField(props) {
+export default function FormInputField(props) {
 
     const type = props.type
     const field = props.field
