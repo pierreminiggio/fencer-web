@@ -27,7 +27,7 @@ const DisabledButtonForTooltip = React.forwardRef((props, ref) => {
     delete childProps.loading
 
     return <div style={divStyle} ref={ref}>
-      <DisableableButton {...childProps} disabled>{loading ? <CircularProgress size={14} /> : ''}{text}</DisableableButton>
+      <DisableableButton {...childProps} disabled>{loading ? <CircularProgress size={14} style={{marginRight: '6px'}} /> : ''}{text}</DisableableButton>
     </div>
 })
 

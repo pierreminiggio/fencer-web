@@ -25,7 +25,7 @@ export default function TooltipedButton(props) {
     const isTooltip = childProps.tooltip !== undefined
     if (! isTooltip) {
 
-        return <Button {...childProps}>{loading ? <CircularProgress size={14} /> : ''}{text}</Button>
+        return <Button {...childProps}>{loading ? <CircularProgress size={14} style={{marginRight: '6px'}} /> : ''}{text}</Button>
     }
 
     const tooltip = childProps.tooltip
@@ -44,6 +44,6 @@ export default function TooltipedButton(props) {
     } 
 
     return <Tooltip title={tooltip}>
-        <Button {...childProps}>{loading ? <CircularProgress size={14} /> : ''}{text}</Button>
+        <Button {...childProps}>{loading ? <CircularProgress size={14} style={{marginRight: '6px'}} /> : ''}{text}</Button>
     </Tooltip>
 }
