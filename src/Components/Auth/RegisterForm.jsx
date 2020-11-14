@@ -1,4 +1,5 @@
-import { Button, Box, Tooltip } from '@material-ui/core'
+import { Button, Box } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import FormEmailField from '../Helpers/Form/Input/FormEmailField'
 import FormPasswordField from '../Helpers/Form/Input/FormPasswordField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
@@ -26,11 +27,25 @@ export default function RegisterForm(props) {
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
 
-    const tooltip = ! can('submit') ? 'Veuillez remplir le formulaire' : undefined
+    let tooltip = ! can('submit') ? 'Please fill the form' : undefined
+
+    let alert = undefined
+    const formStyle = {}
+    if (can('submit') && context.password !== context.confirm) {
+        alert = {
+            severity: 'warning',
+            message: 'The 2 passwords don\'t match !'
+        }
+    }
+
+    if (! alert) {
+        formStyle.paddingTop = '48px'
+    }
 
     return (
         <>
-            <form autoComplete="on">
+            <form autoComplete="on" style={formStyle}>
+                {alert ? <Alert severity={alert.severity}>{alert.message}</Alert> : ''}
                 <Box display="flex" flexDirection="column">
                     <FormEmailField
                         field='login'
