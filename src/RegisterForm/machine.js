@@ -16,7 +16,15 @@ export default createMachine(
         })),
         transition(
             'submit',
-            'loading'
+            'loading',
+            guard(ctx =>
+              ctx.login !== null &&
+              ctx.login !== '' &&
+              ctx.password !== null &&
+              ctx.password !== '' &&
+              ctx.confirm !== null &&
+              ctx.confirm !== ''
+            )
         )
       ),
       loading: invoke(

@@ -46,13 +46,14 @@ export default function RegisterForm(props) {
                     />
                 </Box>
             </form>
-            {can('submit') && <Button
+            <Button
                 variant="contained"
                 color="primary"
+                disabled={! can('submit')}
                 onClick={() => send('submit')}
             >
                 Register
-            </Button>}
+            </Button>
             {navigationCan('addToken') && <Button
                 variant="contained"
                 color="primary"
