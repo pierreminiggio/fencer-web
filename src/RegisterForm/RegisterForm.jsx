@@ -17,8 +17,7 @@ export default function RegisterForm(props) {
 
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
-    console.log(can)
-    console.log(send)
+    
     return (
         <>
             <form noValidate autoComplete="on">
