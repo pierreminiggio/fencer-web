@@ -52,6 +52,13 @@ export default function RegisterForm(props) {
 
     return (
         <>
+            {navigationCan('home') && <Button
+                variant="outlined"
+                onClick={() => navigationSend('home')}
+                >
+                Home
+            </Button>}
+
             <form autoComplete="on" style={formStyle}>
                 {alert ? <Alert severity={alert.severity}>{alert.message}</Alert> : ''}
                 <Box display="flex" flexDirection="column">
@@ -76,44 +83,21 @@ export default function RegisterForm(props) {
                         send={send}
                         transition={'input'}
                     />
+
+                    <Box display="flex" flexDirection="row" mt={2}>
+                        <TooltipedButton
+                            variant="contained"
+                            color="primary"
+                            onClick={() => send('submit')}
+                            disabled={! can('submit')}
+                            text='Register'
+                            loading={loading}
+                            tooltip={tooltip}
+                            style={{flexGrow: 1}}
+                        />
+                    </Box>
                 </Box>
             </form>
-
-            <TooltipedButton
-                variant="contained"
-                color="primary"
-                onClick={() => send('submit')}
-                disabled={! can('submit')}
-                text='Register'
-                loading={loading}
-                tooltip={tooltip}
-            />
-            
-            
-            {navigationCan('addToken') && <Button
-                variant="contained"
-                color="primary"
-                onClick={() => navigationSend('addToken', {value: 'blabla'})}
-            >
-                Add Token
-            </Button>}
-
-            {navigationCan('loggedIn') && <Button
-                variant="contained"
-                color="primary"
-                onClick={() => navigationSend('loggedIn')}
-                >
-                Login !
-            </Button>}
-
-            {navigationCan('home') && <Button
-                variant="contained"
-                color="primary"
-                onClick={() => navigationSend('home')}
-                >
-                Home
-            </Button>}
-
             <Box mt={2}>
                 State : {state}<br/>
                 Context : {JSON.stringify(context)}
