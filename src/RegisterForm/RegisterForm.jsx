@@ -1,5 +1,6 @@
 import { Button, Box, TextField } from '@material-ui/core'
 import FormEmailField from '../Form/FormEmailField'
+import FormPasswordField from '../Form/FormPasswordField'
 import { useMachine } from '../Struct/StateMachine/useMachine'
 import machine from './machine'
 
@@ -23,29 +24,25 @@ export default function RegisterForm(props) {
             <form noValidate autoComplete="on">
                 <Box display="flex" flexDirection="column">
                     <FormEmailField
-                        field={'login'}
-                        label={'Login'}
+                        field='login'
+                        label='Login'
+                        can={can}
+                        send={send}
+                        transition='input'
+                    />
+                    <FormPasswordField
+                        field='password'
+                        label='Password'
+                        can={can}
+                        send={send}
+                        transition='input'
+                    />
+                    <FormPasswordField
+                        field='confirm'
+                        label='Confirm Password'
                         can={can}
                         send={send}
                         transition={'input'}
-                    />
-                    <TextField
-                        label="Password"
-                        type="password"
-                        disabled={! can('input')}
-                        onChange={(e) => can('input') && send('input', {
-                            field: 'password',
-                            value: e.target.value
-                        })}
-                    />
-                    <TextField
-                        label="Confirm Password"
-                        type="password"
-                        disabled={! can('input')}
-                        onChange={(e) => can('input') && send('input', {
-                            field: 'confirm',
-                            value: e.target.value
-                        })}
                     />
                 </Box>
             </form>
