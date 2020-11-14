@@ -18,7 +18,7 @@ export default createMachine(
                 'submit',
                 'loading',
                 guard(ctx =>
-                    ctx.login !== null &&
+                    ctx.email !== null &&
                     ctx.password !== null &&
                     ctx.confirm !== null
                 )
@@ -40,5 +40,5 @@ export default createMachine(
         success: state(),
         error: state()
       },
-      () => ({login: null, password: null, confirm: null, token: null})
+      () => ({email: null, password: null, confirm: null, token: null})
 )

@@ -56,8 +56,8 @@ export default function RegisterForm(props) {
                 {alert ? <Alert severity={alert.severity}>{alert.message}</Alert> : ''}
                 <Box display="flex" flexDirection="column">
                     <FormEmailField
-                        field='login'
-                        label='Login'
+                        field='email'
+                        label='Email'
                         can={can}
                         send={send}
                         transition='input'
