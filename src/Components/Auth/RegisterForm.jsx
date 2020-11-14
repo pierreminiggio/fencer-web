@@ -4,7 +4,7 @@ import FormPasswordField from '../Helpers/Form/Input/FormPasswordField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
 import machine from '../../Domain/Auth/register'
 import StateMachine from '../../Struct/StateMachine/StateMachine'
-import DisabledButtonForTooltip from '../Helpers/Form/Button/DisabledButtonForTooltip'
+import TooltipedButton from '../Helpers/Form/Button/TooltipedButton'
 
 /**
  * @typedef {Object} RegisterFormProps
@@ -25,6 +25,8 @@ export default function RegisterForm(props) {
 
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
+
+    const tooltip = ! can('submit') ? 'Veuillez remplir le formulaire' : undefined
 
     return (
         <>
@@ -53,42 +55,39 @@ export default function RegisterForm(props) {
                     />
                 </Box>
             </form>
-            {
-                can('submit')
-                    ? <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => send('submit')}
-                    >
-                        Register
-                    </Button>
-                    : <Tooltip title="Veuillez remplir le formulaire">
-                        <DisabledButtonForTooltip text='Register'/>
-                    </Tooltip>
-            }
+
+            <TooltipedButton
+                variant="contained"
+                color="primary"
+                onClick={() => send('submit')}
+                disabled={! can('submit')}
+                text='Register'
+                tooltip={tooltip}
+            />
+            
             
             {navigationCan('addToken') && <Button
                 variant="contained"
                 color="primary"
                 onClick={() => navigationSend('addToken', {value: 'blabla'})}
             >
-            Add Token
+                Add Token
             </Button>}
 
             {navigationCan('loggedIn') && <Button
-            variant="contained"
-            color="primary"
-            onClick={() => navigationSend('loggedIn')}
-            >
-            Login !
+                variant="contained"
+                color="primary"
+                onClick={() => navigationSend('loggedIn')}
+                >
+                Login !
             </Button>}
 
             {navigationCan('home') && <Button
-            variant="contained"
-            color="primary"
-            onClick={() => navigationSend('home')}
-            >
-            Home
+                variant="contained"
+                color="primary"
+                onClick={() => navigationSend('home')}
+                >
+                Home
             </Button>}
 
             <Box mt={2}>
