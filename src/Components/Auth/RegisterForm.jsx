@@ -2,7 +2,7 @@ import { Button, Box, Tooltip } from '@material-ui/core'
 import FormEmailField from '../Form/Input/FormEmailField'
 import FormPasswordField from '../Form/Input/FormPasswordField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
-import machine from '../../RegisterForm/machine'
+import machine from '../../Domain/Auth/register'
 
 /**
  * @param {Object} props
