@@ -1,4 +1,5 @@
 import { Button, Box, TextField } from '@material-ui/core'
+import FormTextField from '../Form/FormTextField'
 import { useMachine } from '../Struct/StateMachine/useMachine'
 import machine from './machine'
 
@@ -15,19 +16,19 @@ export default function RegisterForm(props) {
 
     const registerMachine = useMachine(machine)
     const {state, context, can, send} = registerMachine
-
+    console.log(can)
+    console.log(send)
     return (
         <>
             <form noValidate autoComplete="on">
                 <Box display="flex" flexDirection="column">
-                    <TextField
-                        label="Login"
-                        type="email"
-                        disabled={! can('input')}
-                        onChange={(e) => can('input') && send('input', {
-                            field: 'login',
-                            value: e.target.value
-                        })}
+                    <FormTextField
+                        type={'email'}
+                        field={'login'}
+                        label={'Login'}
+                        can={can}
+                        send={send}
+                        transition={'input'}
                     />
                     <TextField
                         label="Password"
