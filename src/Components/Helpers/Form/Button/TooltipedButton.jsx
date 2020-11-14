@@ -1,5 +1,6 @@
 import { Button, CircularProgress, Tooltip } from '@material-ui/core'
 import DisabledButtonForTooltip from './DisabledButtonForTooltip'
+import ButtonProgress from './ButtonProgress'
 
 /**
  * @typedef {Object} TooltipedButtonProps
@@ -25,7 +26,7 @@ export default function TooltipedButton(props) {
     const isTooltip = childProps.tooltip !== undefined
     if (! isTooltip) {
 
-        return <Button {...childProps}>{loading ? <CircularProgress size={14} style={{marginRight: '6px'}} /> : ''}{text}</Button>
+        return <Button {...childProps}>{loading ? <ButtonProgress /> : ''}{text}</Button>
     }
 
     const tooltip = childProps.tooltip

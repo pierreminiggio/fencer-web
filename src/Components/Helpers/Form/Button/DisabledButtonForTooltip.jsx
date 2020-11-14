@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, CircularProgress } from "@material-ui/core"
+import { Button } from "@material-ui/core"
 import { withStyles } from '@material-ui/core/styles'
+import ButtonProgress from './ButtonProgress'
 
 const divStyle = {
     display: 'inline-block'
@@ -27,7 +28,7 @@ const DisabledButtonForTooltip = React.forwardRef((props, ref) => {
     delete childProps.loading
 
     return <div style={divStyle} ref={ref}>
-      <DisableableButton {...childProps} disabled>{loading ? <CircularProgress size={14} style={{marginRight: '6px'}} /> : ''}{text}</DisableableButton>
+      <DisableableButton {...childProps} disabled>{loading ? <ButtonProgress/> : ''}{text}</DisableableButton>
     </div>
 })
 
