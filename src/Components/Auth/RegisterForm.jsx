@@ -41,7 +41,7 @@ export default function RegisterForm(props) {
         setTimeout(() => {
             navigationCan('addToken') && navigationSend('addToken', {value: context.token})
             navigationCan('loggedIn') && navigationSend('loggedIn')
-        }, 2000)
+        }, 300)
     }
 
     if (! alert) {
