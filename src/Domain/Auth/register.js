@@ -1,4 +1,5 @@
 import {createMachine, guard, invoke, reduce, state, transition} from 'robot3'
+import addStringValueOrNull from '../../Struct/Object/addStringValueOrNull'
 
 function wait(ms) {
     return new Promise((resolve) => setTimeout(() => resolve(), ms))
@@ -9,10 +10,7 @@ export default createMachine(
     {
         form: state(
             transition('input', 'form', reduce((ctx, ev) => {
-                const newCtx = {...ctx}
-                newCtx[ev.field] = ev.value !== '' ? ev.value : null
-
-                return newCtx
+                return addStringValueOrNull(ctx, ev.field, ev.value)
             })),
             transition(
                 'submit',
