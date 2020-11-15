@@ -1,5 +1,4 @@
 import { Box } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
 import FormEmailField from '../Helpers/Form/Input/FormEmailField'
 import FormPasswordField from '../Helpers/Form/Input/FormPasswordField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
@@ -7,6 +6,7 @@ import machine from '../../Domain/Auth/register'
 import StateMachine from '../../Struct/StateMachine/StateMachine'
 import TooltipedButton from '../Helpers/Form/Button/TooltipedButton'
 import AlertData from '../../Struct/MaterialUI/AlertData'
+import AlertOrEmptySpaceProps from '../Helpers/Form/Alert/AlertOrEmptySpace'
 
 /**
  * @typedef {Object} RegisterFormProps
@@ -31,7 +31,6 @@ export default function RegisterForm(props) {
     const tooltip = ! can('submit') && state === 'edit' ? 'Please fill the form' : undefined
 
     let alert = undefined
-    const formStyle = {}
     if (can('submit') && context.password !== context.confirm) {
         alert = new AlertData('warning', 'The 2 passwords don\'t match !')
     }
@@ -43,17 +42,12 @@ export default function RegisterForm(props) {
             navigationCan('loggedIn') && navigationSend('loggedIn')
         }, 300)
     }
-
-    if (! alert) {
-        formStyle.paddingTop = '48px'
-    }
-
     const loading = state === 'loading'
 
     return (
         <>
-            <form autoComplete="on" style={formStyle}>
-                {alert ? <Alert severity={alert.severity}>{alert.message}</Alert> : ''}
+            <form autoComplete="on">
+                <AlertOrEmptySpaceProps alert={alert} />
                 <Box display="flex" flexDirection="column">
                     <FormEmailField
                         field='email'
