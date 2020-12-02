@@ -1,6 +1,7 @@
 import { Box } from '@material-ui/core'
 import FormEmailField from '../Helpers/Form/Input/FormEmailField'
 import FormPasswordField from '../Helpers/Form/Input/FormPasswordField'
+import FormTextField from '../Helpers/Form/Input/FormTextField'
 import { useMachine } from '../../Struct/StateMachine/useMachine'
 import machine from '../../Domain/Auth/register'
 import StateMachine from '../../Struct/StateMachine/StateMachine'
@@ -49,6 +50,13 @@ export default function RegisterForm(props) {
             <form autoComplete="on">
                 <AlertOrEmptySpaceProps alert={alert} />
                 <Box display="flex" flexDirection="column">
+                    <FormTextField
+                        field='login'
+                        label='Login'
+                        can={can}
+                        send={send}
+                        transition='input'
+                    />
                     <FormEmailField
                         field='email'
                         label='Email'

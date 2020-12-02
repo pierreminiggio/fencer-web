@@ -1,5 +1,6 @@
 import {createMachine, guard, invoke, reduce, state, transition} from 'robot3'
 import addStringValueOrNull from '../../Struct/Object/addStringValueOrNull'
+import registerRequest from '../../Http/Client/Auth/registerRequest'
 
 function wait(ms) {
     return new Promise((resolve) => setTimeout(() => resolve(), ms))
@@ -16,6 +17,7 @@ export default createMachine(
                 'submit',
                 'loading',
                 guard(ctx =>
+                    ctx.login !== null &&
                     ctx.email !== null &&
                     ctx.password !== null &&
                     ctx.confirm !== null
@@ -23,11 +25,14 @@ export default createMachine(
             )
         ),
         loading: invoke(
-            () => wait(2000),
+            async () => {
+                await registerRequest('test', 'test', 'test'/*ctx.login, ctx.email, ctx.password*/)
+                return {token: 'test'}
+            },
             transition(
                 'done',
                 'success',
-                reduce((ctx, ev) => ({...ctx, token: 'test'}))
+                reduce((ctx, ev) => ({...ctx, token: ev.data.token}))
             ),
             transition(
                 'error',
@@ -35,8 +40,14 @@ export default createMachine(
                 reduce((ctx, ev) => ({...ctx, error: ev.error.message}))
             )
         ),
-        success: state(),
-        error: state()
-      },
-      () => ({email: null, password: null, confirm: null, token: null})
+        success: state(transition('dismiss', 'form')),
+        error: state(transition('dismiss', 'form'))
+    },
+    () => ({
+        login: null,
+        email: null,
+        password: null,
+        confirm: null,
+        token: null
+    })
 )
